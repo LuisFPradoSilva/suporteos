@@ -7,16 +7,40 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.curso.domains.enums.PersonType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Person {
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "person")
+public abstract class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     protected UUID id;
     protected String firstName;
     protected String lastName;
+
+    @Column(unique = true)
     protected String cpf;
+
+    @Column(unique = true)
     protected String email;
     protected String password;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate createdAt = LocalDate.now();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "perfis")
     protected Set<Integer> personType = new HashSet<>();
     
     public Person(UUID id, String firstName, String lastName, String cpf, String email, String password) {
