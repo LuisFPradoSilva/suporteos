@@ -8,10 +8,8 @@ import com.curso.domains.enums.PersonType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tecnhnician")
 public class Technician extends Person {
 
     @OneToMany(mappedBy = "technician")

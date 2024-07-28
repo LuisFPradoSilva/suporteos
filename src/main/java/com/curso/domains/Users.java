@@ -8,13 +8,11 @@ import com.curso.domains.enums.PersonType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
 public class Users extends Person {
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private List<ServiceOrder> serviceOrders = new ArrayList<>();
 
     public Users(UUID id, String firstName, String lastName, String cpf, String email, String password) {
