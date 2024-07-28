@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Logs ###
+suporteos_test.log
+suporteos_dev.log
