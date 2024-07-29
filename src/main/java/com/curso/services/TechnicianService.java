@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.curso.domains.Technician;
 import com.curso.domains.dtos.TechnicianDTO;
 import com.curso.repositories.TechnicianRepository;
+import com.curso.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TechnicianService {
@@ -24,11 +25,11 @@ public class TechnicianService {
 
     public Technician findById(UUID id) {
         Optional<Technician> obj = techRepo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado no sistema! ID: " + id));
     }
 
     public Technician findByCpf(String cpf) {
         Optional<Technician> obj = techRepo.findByCpf(cpf);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado no sistema! CPF: " + cpf));
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.curso.domains.Users;
 import com.curso.domains.dtos.UsersDTO;
 import com.curso.repositories.UsersRepository;
+import com.curso.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UsersService {
@@ -24,11 +25,11 @@ public class UsersService {
 
     public Users findById(UUID id) {
         Optional<Users> obj = usersRepo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado no sistema! ID: " + id));
     }
 
     public Users findByCpf(String cpf) {
         Optional<Users> obj = usersRepo.findByCpf(cpf);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado no sistema! CPF: " + cpf));
     }
 }
