@@ -31,4 +31,10 @@ public class UsersResource {
         Users obj = this.usersService.findById(id);
         return ResponseEntity.ok().body(new UsersDTO(obj));
     }
+
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<UsersDTO> findByCpf(@PathVariable String cpf) {
+        Users obj = this.usersService.findByCpf(cpf);
+        return ResponseEntity.ok().body(new UsersDTO(obj));
+    }
 }

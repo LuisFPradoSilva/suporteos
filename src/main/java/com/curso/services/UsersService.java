@@ -26,4 +26,9 @@ public class UsersService {
         Optional<Users> obj = usersRepo.findById(id);
         return obj.orElse(null);
     }
+
+    public Users findByCpf(String cpf) {
+        Optional<Users> obj = usersRepo.findByCpf(cpf);
+        return obj.orElse(null);
+    }
 }
