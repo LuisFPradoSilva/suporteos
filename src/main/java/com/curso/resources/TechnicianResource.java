@@ -31,4 +31,10 @@ public class TechnicianResource {
         Technician obj = this.techService.findById(id);
         return ResponseEntity.ok().body(new TechnicianDTO(obj));
     }
+
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<TechnicianDTO> findByCpf(@PathVariable String cpf) {
+        Technician obj = this.techService.findByCpf(cpf);
+        return ResponseEntity.ok().body(new TechnicianDTO(obj));
+    }
 }

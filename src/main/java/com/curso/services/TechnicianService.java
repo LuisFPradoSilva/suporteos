@@ -26,4 +26,9 @@ public class TechnicianService {
         Optional<Technician> obj = techRepo.findById(id);
         return obj.orElse(null);
     }
+
+    public Technician findByCpf(String cpf) {
+        Optional<Technician> obj = techRepo.findByCpf(cpf);
+        return obj.orElse(null);
+    }
 }
