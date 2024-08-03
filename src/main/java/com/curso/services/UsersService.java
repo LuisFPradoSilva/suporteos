@@ -32,4 +32,10 @@ public class UsersService {
         Optional<Users> obj = usersRepo.findByCpf(cpf);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado no sistema! CPF: " + cpf));
     }
+
+    public Users create(UsersDTO objDto) {
+        objDto.setId(null);
+        Users newObj = new Users(objDto);
+        return usersRepo.save(newObj);
+    }
 }
