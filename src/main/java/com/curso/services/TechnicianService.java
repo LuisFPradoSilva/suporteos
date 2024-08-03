@@ -32,4 +32,10 @@ public class TechnicianService {
         Optional<Technician> obj = techRepo.findByCpf(cpf);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Técnico não encontrado no sistema! CPF: " + cpf));
     }
+
+    public Technician create(TechnicianDTO objDto) {
+        objDto.setId(null);
+        Technician newObj = new Technician(objDto);
+        return techRepo.save(newObj);
+    }
 }
