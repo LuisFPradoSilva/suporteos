@@ -54,6 +54,16 @@ public class UsersService {
         return usersRepo.save(oldObj);
     }
 
+        public void delete(UUID id) {
+        Users obj = findById(id);
+
+        if (obj.getServiceOrders().size() > 0) {
+            throw new DataIntegrityViolationException("Não foi possível deletar o usuário, ele já possui ordens de serviço!");
+        }
+
+        usersRepo.deleteById(id);
+    }
+
     private void validaPorCPFeEmail(UsersDTO objDto) {
         Optional<Users> obj = usersRepo.findByCpf(objDto.getCpf());
 

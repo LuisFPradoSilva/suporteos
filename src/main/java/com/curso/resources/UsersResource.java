@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,5 +63,11 @@ public class UsersResource {
     public ResponseEntity<UsersDTO> update(@PathVariable UUID id, @Valid @RequestBody UsersDTO objDto) {
         Users obj = usersService.update(id, objDto);
         return ResponseEntity.ok().body(new UsersDTO(obj));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<UsersDTO> delete(@PathVariable UUID id) {
+        usersService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
