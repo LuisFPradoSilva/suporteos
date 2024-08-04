@@ -42,6 +42,12 @@ public class TechnicianResource {
         return ResponseEntity.ok().body(new TechnicianDTO(obj));
     }
 
+    @GetMapping(value = "/email/{email}")
+    public ResponseEntity<TechnicianDTO> findByEmail(@PathVariable String email) {
+        Technician obj = this.techService.findByEmail(email);
+        return ResponseEntity.ok().body(new TechnicianDTO(obj));
+    }
+
     @PostMapping
     public ResponseEntity<TechnicianDTO> create(@RequestBody TechnicianDTO objDto) {
         Technician newObj = techService.create(objDto);

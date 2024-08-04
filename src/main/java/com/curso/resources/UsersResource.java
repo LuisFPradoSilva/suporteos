@@ -42,6 +42,12 @@ public class UsersResource {
         return ResponseEntity.ok().body(new UsersDTO(obj));
     }
 
+    @GetMapping(value = "/email/{email}")
+    public ResponseEntity<UsersDTO> findByEmail(@PathVariable String email) {
+        Users obj = this.usersService.findByEmail(email);
+        return ResponseEntity.ok().body(new UsersDTO(obj));
+    }
+
     @PostMapping
     public ResponseEntity<UsersDTO> create(@RequestBody UsersDTO objDto) {
         Users newObj = usersService.create(objDto);
