@@ -46,6 +46,14 @@ public class UsersService {
         return usersRepo.save(newObj);
     }
 
+    public Users update(UUID id, UsersDTO objDto) {
+        objDto.setId(id);
+        Users oldObj = findById(id);
+        validaPorCPFeEmail(objDto);
+        oldObj = new Users(objDto);
+        return usersRepo.save(oldObj);
+    }
+
     private void validaPorCPFeEmail(UsersDTO objDto) {
         Optional<Users> obj = usersRepo.findByCpf(objDto.getCpf());
 
