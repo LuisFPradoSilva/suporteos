@@ -1,13 +1,16 @@
 package com.curso.resources;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.curso.domains.ServiceOrder;
 import com.curso.domains.dtos.ServiceOrderDTO;
 import com.curso.services.ServiceOrderService;
 
@@ -21,5 +24,11 @@ public class ServiceOrderResource {
     @GetMapping
     public ResponseEntity<List<ServiceOrderDTO>> findAll() {
         return ResponseEntity.ok().body(serviceOrderService.findAll());
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ServiceOrderDTO> findById(@PathVariable UUID id) {
+        ServiceOrder obj = this.serviceOrderService.findById(id);
+        return ResponseEntity.ok().body(new ServiceOrderDTO(obj));
     }
 }
