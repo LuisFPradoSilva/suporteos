@@ -27,4 +27,10 @@ public class ServiceOrderService {
         Optional<ServiceOrder> obj = serviceOrderRepo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Ordem de serviço não encontrada no sistema! ID: " + id));
     }
+
+    public ServiceOrder create(ServiceOrderDTO objDto) {
+        objDto.setId(null);
+        ServiceOrder newObj = new ServiceOrder(objDto);
+        return serviceOrderRepo.save(newObj);
+    }
 }
