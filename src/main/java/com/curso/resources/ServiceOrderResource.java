@@ -1,0 +1,25 @@
+package com.curso.resources;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.curso.domains.dtos.ServiceOrderDTO;
+import com.curso.services.ServiceOrderService;
+
+@RestController
+@RequestMapping(value = "/serviceorder")
+public class ServiceOrderResource {
+
+    @Autowired
+    private ServiceOrderService serviceOrderService;
+
+    @GetMapping
+    public ResponseEntity<List<ServiceOrderDTO>> findAll() {
+        return ResponseEntity.ok().body(serviceOrderService.findAll());
+    }
+}
