@@ -40,4 +40,9 @@ public class ServiceOrderService {
         oldObj = new ServiceOrder(objDto);
         return serviceOrderRepo.save(oldObj);
     }
+
+    public void delete(UUID id) {
+        ServiceOrder obj = findById(id);
+        serviceOrderRepo.delete(obj);
+    }
 }
