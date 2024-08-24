@@ -33,4 +33,11 @@ public class ServiceOrderService {
         ServiceOrder newObj = new ServiceOrder(objDto);
         return serviceOrderRepo.save(newObj);
     }
+
+    public ServiceOrder update(UUID id, ServiceOrderDTO objDto) {
+        objDto.setId(id);
+        ServiceOrder oldObj = findById(id);
+        oldObj = new ServiceOrder(objDto);
+        return serviceOrderRepo.save(oldObj);
+    }
 }
