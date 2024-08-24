@@ -8,14 +8,26 @@ import com.curso.domains.enums.OrderPriority;
 import com.curso.domains.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class ServiceOrderDTO {
 
     private UUID id;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate startDate = LocalDate.now();
+
+    @NotNull(message = "A data de encerramento não pode ser nula!")
+    @NotBlank(message = "A data de encerramento não poder ser em branco!")
     private LocalDate endDate;
+
+    @NotNull(message = "O título da ordem de serviço não pode ser nula!")
+    @NotBlank(message = "O título da ordem de serviço não poder ser em branco!")
     private String titleOS;
+
+    @NotNull(message = "A descrição da ordem de serviço não pode ser nula!")
+    @NotBlank(message = "A descrição da ordem de serviço não poder ser em branco!")
     private String description;
     private OrderPriority orderPriority;
     private OrderStatus orderStatus;
