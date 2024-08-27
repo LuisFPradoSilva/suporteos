@@ -3,7 +3,6 @@ package com.curso.domains;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.curso.domains.dtos.ServiceOrderDTO;
 import com.curso.domains.enums.OrderPriority;
 import com.curso.domains.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -53,7 +52,7 @@ public class ServiceOrder {
         this.users = users;
     }
 
-    public ServiceOrder(ServiceOrderDTO obj) {
+    /*public ServiceOrder(ServiceOrderDTO obj) {
         this.id = obj.getId();
         this.startDate = obj.getStartDate();
         this.endData = obj.getEndDate();
@@ -61,7 +60,7 @@ public class ServiceOrder {
         this.description = obj.getDescription();
         this.orderPriority = obj.getOrderPriority();
         this.orderStatus = obj.getOrderStatus();
-    }
+    }*/
 
     public ServiceOrder() {
     }

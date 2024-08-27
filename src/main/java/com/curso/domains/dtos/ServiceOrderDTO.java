@@ -4,11 +4,8 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import com.curso.domains.ServiceOrder;
-import com.curso.domains.enums.OrderPriority;
-import com.curso.domains.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class ServiceOrderDTO {
@@ -18,19 +15,32 @@ public class ServiceOrderDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate startDate = LocalDate.now();
 
-    @NotNull(message = "A data de encerramento não pode ser nula!")
-    @NotBlank(message = "A data de encerramento não poder ser em branco!")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate endDate;
 
-    @NotNull(message = "O título da ordem de serviço não pode ser nula!")
-    @NotBlank(message = "O título da ordem de serviço não poder ser em branco!")
+    @NotNull(message = "Campo obrigatório!")
     private String titleOS;
 
-    @NotNull(message = "A descrição da ordem de serviço não pode ser nula!")
-    @NotBlank(message = "A descrição da ordem de serviço não poder ser em branco!")
+    @NotNull(message = "Campo obrigatório!")
     private String description;
-    private OrderPriority orderPriority;
-    private OrderStatus orderStatus;
+
+    @NotNull(message = "Campo obrigatório!")
+    private Integer orderPriority;
+
+    @NotNull(message = "Campo obrigatório!")
+    private Integer orderStatus;
+
+    @NotNull(message = "Campo obrigatório!")
+    private UUID technician;
+
+    @NotNull(message = "Campo obrigatório!")
+    private UUID user;
+    private String nameTechnician;
+    private String nameUser;
+
+    public ServiceOrderDTO() {
+        
+    }
 
     public ServiceOrderDTO(ServiceOrder obj) {
         this.id = obj.getId();
@@ -38,8 +48,12 @@ public class ServiceOrderDTO {
         this.endDate = obj.getEndData();
         this.titleOS = obj.getTitleOS();
         this.description = obj.getDescription();
-        this.orderPriority = obj.getOrderPriority();
-        this.orderStatus = obj.getOrderStatus();
+        this.orderPriority = obj.getOrderPriority().getId();
+        this.orderStatus = obj.getOrderStatus().getId();
+        this.technician = obj.getTechnician().getId();
+        this.user = obj.getUsers().getId();
+        this.nameTechnician = obj.getTechnician().getFirstName() + " " + obj.getTechnician().getLastName();
+        this.nameUser = obj.getUsers().getFirstName() + " " + obj.getUsers().getLastName();
     }
 
     public UUID getId() {
@@ -82,21 +96,52 @@ public class ServiceOrderDTO {
         this.description = description;
     }
 
-    public OrderPriority getOrderPriority() {
+    public Integer getOrderPriority() {
         return orderPriority;
     }
 
-    public void setOrderPriority(OrderPriority orderPriority) {
+    public void setOrderPriority(Integer orderPriority) {
         this.orderPriority = orderPriority;
     }
 
-    public OrderStatus getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    
+    public UUID getTechnician() {
+        return technician;
+    }
+
+    public void setTechnician(UUID technician) {
+        this.technician = technician;
+    }
+
+    public UUID getUser() {
+        return user;
+    }
+
+    public void setUser(UUID user) {
+        this.user = user;
+    }
+
+    public String getNameTechnician() {
+        return nameTechnician;
+    }
+
+    public void setNameTechnician(String nameTechnician) {
+        this.nameTechnician = nameTechnician;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
 }

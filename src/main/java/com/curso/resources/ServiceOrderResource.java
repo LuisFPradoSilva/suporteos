@@ -41,7 +41,7 @@ public class ServiceOrderResource {
     }
 
     @PostMapping
-    public ResponseEntity<ServiceOrderDTO> create(@RequestBody ServiceOrderDTO objDto) {
+    public ResponseEntity<ServiceOrderDTO> create(@Valid @RequestBody ServiceOrderDTO objDto) {
         ServiceOrder newObj = serviceOrderService.create(objDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
