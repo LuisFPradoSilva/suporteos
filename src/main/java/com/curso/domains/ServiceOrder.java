@@ -52,16 +52,6 @@ public class ServiceOrder {
         this.users = users;
     }
 
-    /*public ServiceOrder(ServiceOrderDTO obj) {
-        this.id = obj.getId();
-        this.startDate = obj.getStartDate();
-        this.endData = obj.getEndDate();
-        this.titleOS = obj.getTitleOS();
-        this.description = obj.getDescription();
-        this.orderPriority = obj.getOrderPriority();
-        this.orderStatus = obj.getOrderStatus();
-    }*/
-
     public ServiceOrder() {
     }
 
