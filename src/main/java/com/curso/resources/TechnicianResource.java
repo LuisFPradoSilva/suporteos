@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/technician")
-@Tag(name = "Technician", description = "API para gerenciamento do técnicos.")
+@Tag(name = "Technician", description = "API para gerenciamento dos técnicos.")
 public class TechnicianResource {
 
     @Autowired
@@ -59,7 +59,7 @@ public class TechnicianResource {
         return ResponseEntity.ok().body(new TechnicianDTO(obj));
     }
 
-    @Operation(summary = "Cria um novo ténico", description = "Cria um novo baseado nos dados inseridos.")
+    @Operation(summary = "Cria um novo ténico", description = "Cria um novo técnico baseado nos dados inseridos.")
     @PostMapping
     public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO objDto) {
         Technician newObj = techService.create(objDto);
