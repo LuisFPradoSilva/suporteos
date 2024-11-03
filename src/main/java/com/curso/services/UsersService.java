@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.curso.domains.Users;
@@ -19,6 +20,9 @@ public class UsersService {
 
     @Autowired
     private UsersRepository usersRepo;
+
+    @Autowired(required = true)
+    private BCryptPasswordEncoder encoder;
 
     public List<UsersDTO> findAll() {
         return usersRepo.findAll().stream().map(obj -> new UsersDTO(obj)).collect(Collectors.toList());
@@ -41,6 +45,7 @@ public class UsersService {
 
     public Users create(UsersDTO objDto) {
         objDto.setId(null);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         Users newObj = new Users(objDto);
         return usersRepo.save(newObj);

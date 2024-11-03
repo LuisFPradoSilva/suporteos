@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.curso.domains.Technician;
@@ -19,6 +20,9 @@ public class TechnicianService {
 
     @Autowired
     private TechnicianRepository techRepo;
+
+    @Autowired(required = true)
+    private BCryptPasswordEncoder encoder;
 
     public List<TechnicianDTO> findAll() {
         return techRepo.findAll().stream().map(obj -> new TechnicianDTO(obj)).collect(Collectors.toList());
@@ -41,6 +45,7 @@ public class TechnicianService {
 
     public Technician create(TechnicianDTO objDto) {
         objDto.setId(null);
+        objDto.setPassword(encoder.encode(objDto.getPassword()));
         validaPorCPFeEmail(objDto);
         Technician newObj = new Technician(objDto);
         return techRepo.save(newObj);
