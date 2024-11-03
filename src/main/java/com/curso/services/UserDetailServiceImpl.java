@@ -7,22 +7,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.curso.domains.Users;
-import com.curso.repositories.UsersRepository;
+import com.curso.domains.Person;
+import com.curso.repositories.PersonRepository;
 import com.curso.security.UserSS;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private final UsersRepository userRepository;
+    //private final UsersRepository userRepository;
+    private final PersonRepository personRepository;
 
-    public UserDetailServiceImpl(UsersRepository userRepository) {
-        this.userRepository = userRepository;
+    //public UserDetailServiceImpl(UsersRepository userRepository) {
+    public UserDetailServiceImpl(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Users> user = userRepository.findByEmail(username);
+        Optional<Person> user = personRepository.findByEmail(username);
 
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found: " + username);

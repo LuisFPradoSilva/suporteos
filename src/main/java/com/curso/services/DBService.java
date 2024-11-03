@@ -1,7 +1,7 @@
 package com.curso.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,6 @@ import com.curso.domains.enums.OrderStatus;
 import com.curso.repositories.ServiceOrderRepository;
 import com.curso.repositories.TechnicianRepository;
 import com.curso.repositories.UsersRepository;
-
-import com.curso.config.SecurityConfig;
 
 @Service
 public class DBService {
