@@ -26,7 +26,7 @@ import com.curso.services.UserDetailServiceImpl;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_URLS =  {"/h2-console/", "/auth/**", "/login/"};
+    private static final String[] PUBLIC_URLS =  {"/h2-console/**", "/auth/**", "/login"};
 
     private final Environment env;
     private final JWTUtils jwtUtils;
@@ -46,9 +46,9 @@ public class SecurityConfig {
 
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authorizeHttpRequests(authorize -> authorize.requestMatchers(PUBLIC_URLS).permitAll()
-        .anyRequest()
-        .authenticated())
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(PUBLIC_URLS).permitAll()
+            .anyRequest().authenticated())
         .csrf(csrf -> csrf.disable());
 
         http.addFilterBefore(new JWTAuthenticationFilter(jwtUtils, userDetailServiceImpl),
@@ -77,7 +77,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

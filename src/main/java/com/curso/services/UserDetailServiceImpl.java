@@ -14,10 +14,8 @@ import com.curso.security.UserSS;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    //private final UsersRepository userRepository;
     private final PersonRepository personRepository;
 
-    //public UserDetailServiceImpl(UsersRepository userRepository) {
     public UserDetailServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }

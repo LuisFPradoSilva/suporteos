@@ -21,7 +21,7 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepo;
 
-    @Autowired(required = true)
+    @Autowired
     private BCryptPasswordEncoder encoder;
 
     public List<UsersDTO> findAll() {

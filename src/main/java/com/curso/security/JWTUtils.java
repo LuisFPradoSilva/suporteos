@@ -25,7 +25,7 @@ public class JWTUtils {
         String tokenGerado = Jwts.builder()
             .setSubject(username)
             .setExpiration(new Date(System.currentTimeMillis() + expiration))
-            .signWith(SignatureAlgorithm.ES512, key)
+            .signWith(SignatureAlgorithm.HS512, key)
             .compact();
         return "Bearer " + tokenGerado;
     }
